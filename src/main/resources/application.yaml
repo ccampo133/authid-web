@@ -1,0 +1,9 @@
+spring:
+  thymeleaf.cache: false
+
+security:
+  basic.enabled: false
+  user.password: password
+
+logging:
+  level.org.springframework.security: DEBUG
