@@ -19,9 +19,4 @@ public class RootController {
         model.put("timestamp", Instant.now());
         return "home";
     }
-
-    @RequestMapping("/foo")
-    public String foo() {
-        throw new RuntimeException("Expected exception in controller");
-    }
 }
