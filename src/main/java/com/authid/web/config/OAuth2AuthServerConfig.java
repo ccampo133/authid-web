@@ -7,8 +7,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-
-import javax.sql.DataSource;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 
 /**
  * @author Chris Campo
@@ -18,7 +17,7 @@ import javax.sql.DataSource;
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private DataSource dataSource;
+    private JdbcClientDetailsService clientDetailsService;
 
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -29,7 +28,7 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
         // @formatter:off
         clients
-            .jdbc(dataSource);
+            .withClientDetails(clientDetailsService);
         // @formatter:on
     }
 

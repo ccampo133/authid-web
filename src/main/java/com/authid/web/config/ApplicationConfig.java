@@ -3,6 +3,7 @@ package com.authid.web.config;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 
 import javax.sql.DataSource;
@@ -15,6 +16,8 @@ public class ApplicationConfig {
 
     @Bean
     public JdbcClientDetailsService jdbcClientDetailsService(@NotNull final DataSource dataSource) {
-        return new JdbcClientDetailsService(dataSource);
+        final JdbcClientDetailsService service = new JdbcClientDetailsService(dataSource);
+        service.setPasswordEncoder(new BCryptPasswordEncoder(10));
+        return service;
     }
 }
