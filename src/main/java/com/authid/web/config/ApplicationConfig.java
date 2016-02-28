@@ -17,7 +17,12 @@ public class ApplicationConfig {
     @Bean
     public JdbcClientDetailsService jdbcClientDetailsService(@NotNull final DataSource dataSource) {
         final JdbcClientDetailsService service = new JdbcClientDetailsService(dataSource);
-        service.setPasswordEncoder(new BCryptPasswordEncoder(10));
+        service.setPasswordEncoder(bCryptPasswordEncoder());
         return service;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
