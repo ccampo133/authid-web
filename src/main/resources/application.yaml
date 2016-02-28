@@ -1,6 +1,13 @@
 spring:
   thymeleaf.cache: false
 
+  datasource:
+    username: chriscampo
+    password:
+    url: jdbc:postgresql://localhost:5432/authid
+    driver-class-name: org.postgresql.Driver
+
+
 security:
   basic.enabled: false
   user.password: password
