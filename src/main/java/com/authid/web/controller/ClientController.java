@@ -51,4 +51,23 @@ public class ClientController {
         headers.setLocation(location);
         return new ResponseEntity<>(newClientDetails, headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(path = "/clients/{clientId}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateClientDetails(@NotNull @RequestBody final BaseClientDetails clientDetails) {
+        clientDetailsService.updateClientDetails(clientDetails);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(path = "/clients/{clientId}/client_secret", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateClientDetails(@NotNull @PathVariable final String clientId,
+            @NotNull @RequestBody final String secret) {
+        clientDetailsService.updateClientSecret(clientId, secret);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(path = "/clients/{clientId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> removeClientDetails(@NotNull @PathVariable final String clientId) {
+        clientDetailsService.removeClientDetails(clientId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
