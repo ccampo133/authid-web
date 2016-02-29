@@ -5,10 +5,9 @@ body {
 }
 
 .content {
-    max-width: 330px;
+    max-width: 550px;
     padding: 15px;
     margin: 0 auto;
-    text-align: center;
 }
 
 .buttonHolder {
