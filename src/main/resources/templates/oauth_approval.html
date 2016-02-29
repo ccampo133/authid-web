@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}" href="../../css/base.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1>AuthID - OAuth2 Approval</h1>
+        <p>
+            The application '<span th:text="${authorizationRequest.clientId}">client</span>' requests the following
+            permissions:
+        </p>
+        <form id="approvalForm" name="approvalForm" action="/oauth/authorize" method="post">
+            <ul th:each="scope: ${scopes.keySet()}">
+                <li>
+                    <div class="form-scope">
+                        <span th:text="${scope} + ':'">scope:</span>
+                        <label>
+                            <input type="radio" th:name="${scope}" value="true" th:checked="${scopes.get(scope)}"/>
+                            Approve
+                        </label>
+                        <label>
+                            <input type="radio" th:name="${scope}" value="false" th:checked="${!scopes.get(scope)}"/>
+                            Deny
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" name="user_oauth_approval" value="true" class="btn btn-primary">Authorize</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
