@@ -17,7 +17,6 @@ public class RootController {
     @RequestMapping("/")
     public String home(final Map<String, Object> model) {
         model.put("message", "Welcome to AuthID");
-        model.put("title", "AuthID - Home");
         model.put("timestamp", Instant.now());
         return "home";
     }
