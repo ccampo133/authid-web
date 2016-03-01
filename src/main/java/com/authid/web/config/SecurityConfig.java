@@ -85,7 +85,9 @@ public class SecurityConfig {
                     .permitAll()
                 .and()
                 .logout()
-                    .permitAll();
+                    .permitAll()
+                .and()
+                    .rememberMe();
             // @formatter:on
         }
 
