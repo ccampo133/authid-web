@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/base.css}" href="../../css/base.css"/>
-    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/login.css"/>
-</head>
+<head th:include="partials/head" th:with="title='AuthID - Login'"></head>
 <body onload="document.form.username.focus();">
 <div class="container">
-    <form name="form" th:action="@{/login}" action="/login" method="POST" class="form-login">
+    <div class="form-login-container">
         <h1>AuthID</h1>
         <p th:if="${param.logout}" class="alert">You have been logged out</p>
         <p th:if="${param.error}" class="alert alert-error">There was an error, please try again</p>
-        <input class="form-control" type="text" name="username" value="" placeholder="Username"/>
-        <input class="form-control" type="password" name="password" placeholder="Password"/>
-        <div class="buttonHolder">
-            <input type="submit" id="login" value="Login" class="btn btn-primary"/>
-        </div>
-    </form>
+        <form name="form" th:action="@{/login}" action="/login" method="POST" class="form-login">
+            Username
+            <input class="form-control" type="text" name="username" value="" placeholder="Username"/>
+            Password
+            <input class="form-control" type="password" name="password" placeholder="Password"/>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember-me"/> Remember me
+                </label>
+            </div>
+            <div class="buttonHolder">
+                <input type="submit" id="login" value="Login" class="btn btn-lg btn-primary btn-block"/>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
